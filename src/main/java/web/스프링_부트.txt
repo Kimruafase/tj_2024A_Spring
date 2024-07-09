@@ -38,3 +38,28 @@
         > 3. resources > application.properties : 프로젝트의 전반적인 설정 / 속성 정보를 작성하는 파일
         > 4. resources > templates : 동적인 웹 리소스 파일 위치할 패키지, 주로 [JSP, 타임리프, 머스테치 등등]
         > 5. build.gradle : 라이브러리들의 의존성 설정 등 프로젝트 전반의 환경을 설정하는 파일
+
+    > 정적 리소스 : 순수 HTML 이므로 웹 서버가 별도의 렌더링이 없다.
+        > resources 하위의 static 폴더에 저장하고 사용
+        > HTML, CSS, JS
+        > 순수 프론트엔드
+
+    > 동적 리소스 : 웹 서버가 렌더링해서 HTML 에서 클라이언트에게 반환
+        > resources 하위의 templates 폴더에 저장하고 사용
+        > JSP(JSTL(JAVA) + HTML), 타임리프(HTML + 독자적인 문법), 머스테치(HTML + 독자적인 문법)
+            > JSP : HTML 과 JAVA 언어를 하나의 파일에 작성할 수 있도록 만든 템플릿
+                > 프론트엔드 개발자 : HTML, CSS, JS, REACT
+                > 백엔드 개발자 : JAVA, PYTHON
+                > 프론트엔드 <-- RESTAPI(AJAX) --> 백엔드
+
+        > JAVA 와 HTML 의 조합된 템플릿
+        > Spring 회사에서는 JSP 지원 X
+        > implementation "org.apache.tomcat.embed:tomcat-embed-jasper"
+        > jsp 파일들은 프로젝트 내 src > main > WEB-INF > .jsp
+
+    > 현 수업에서는 타임리프 사용
+        > 1. 그래이들
+            > implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+        > 2. 타임리프 파일 위치
+            > resources > .html
