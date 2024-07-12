@@ -1,0 +1,42 @@
+클라이언트로부터 요청을 받을 때 controller 가 그 역할을 한다.
+
+> SPRING Controller
+    > 모든 클라이언트의 HTTP 요청 / 응답은 Controller 가 관리한다.
+    > Controller 어노테이션 : @Controller
+    > SPRING Controller 클래스를 만드는 방법
+        > 1.
+                @Controller
+                public class 클래스명{}
+
+> SPRING Controller 의 HTTP 매핑(연결) 메소드
+    > 1. @RequestMapping(value = "", method = RequestMethod.HTTP 의 메소드명)
+         public void 메소드명(){}
+
+         > value    : 해당 메소드를 매핑할 HTTP 주소 정의(ip, port 생략)
+         > method   : method = RequestMethod.HTTP 의 메소드명, 메소드명에는 GET, POST, PUT, DELETE
+
+    > 2. 각 Mapping 의 HTTP 메소드를 Mapping 해서 URL 을 찾는다.
+        > @GetMapping(""), @PostMapping(""), @PutMapping(""), @DeleteMapping("")
+
+> HTTP 데이터 받는 방법
+    > 쿼리스트링 : url?key=value&key=value&key=value
+        > url 주소 뒤에 키와 값으로 구분
+    > 1. HttpServletRequest request
+        > request.getParameter("(쿼리스트링) 매개변수 key")
+    > 2. @RequestParam
+
+    > *@RequestBody HTTP BODY 본문(json)
+
+> HTTP 데이터 응답하는 방법
+    > 1. HttpServletResponse
+        > .getWriter().print("응답할 내용")
+    > 2. @ResponseBody
+        > return 데이터자료;   -> 메소드의 반환 타입은 일치해야함
+        > 메소드 위에 @ResponseBody          : 해당 메소드의 반환 (JAVA)타입을 (HTTP)타입으로 변환
+        > 클래스 위에 @ResponseController    : 해당하는 클래스 내 모든 메소드에 @ResponseBody 자동 적용
+
+> 자바의 기본타입(int, float, boolean 등등) 처럼 HTTP 의 타입 존재
+    > HTTP Content-Type
+        > HTTP 의 타입중 application / json 존재
+            > HTTP 는 자바 타입을 지원 안한다.
+            > 자바타입을 HTTP 타입으로 변환

@@ -7,6 +7,14 @@ HTTP : 하이퍼 텍스트 트랜스퍼 프로토콜
             > 관례적으로 사용되고 가독성을 위해 구분해서 사용, 만일 GET 으로 CRUD 구현한다고 하면 가능하다.
         > 차이점 : 멱등성, 캐시
 
+    > 통신 데이터 타입
+        > Content-Type : 1. text / plain 2. application / json
+    > 데이터 전송 방법
+        > 1. 쿼리스트링 이용 : GET, POST, PUT, DELETE 모두 사용 가능
+            > URL?key=value&key=value -> URL 상에 매개변수가 노출(보안 취약)
+        > 2. BODY 이용     : POST, PUT 사용 가능
+            > HTTP 본문의 데이터를 작성해서 가능(주로 형식은 json, text, html, xml 등등)
+
 서블릿 : JAVA 를 사용해서 웹 페이지를 동적으로 생성하는 서버 측의 프로그램
     > 웹 서버의 성능을 향상시키기 위해 사용되는 일종의 클래스
     > 즉 JAVA 회사에서 웹 개발을 하기 위한 웹 관련 클래스를 제공한다.
