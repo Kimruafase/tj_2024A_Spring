@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class ToDoDao {
 
@@ -24,6 +25,40 @@ public class ToDoDao {
     Connection conn;
     PreparedStatement ps;
     ResultSet rs;
+
+    //get
+    public boolean toDoGet(String key){
+        try{
+            String sql = "insert into todolist (todo) values (?)";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,key);
+            int count = ps.executeUpdate();
+            if(count == 1){return true;}
+        }
+        catch (Exception e){System.out.println(e);} return false;
+    }
+
+    //post
+    public ArrayList<ToDoDto> toDoPost(){
+        ArrayList<ToDoDto> list = new ArrayList<>();
+
+        try{
+            String sql = "select * from todolist";
+            ps = conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while (rs.next()){
+                String todo = rs.getString("todo");
+                int tNo = rs.getInt("tno");
+                int tState = rs.getInt("tstate");
+                ToDoDto todoDto = new ToDoDto();
+                todoDto.setToDo(todo);
+                todoDto.settNo(tNo);
+                todoDto.settState(tState);
+                list.add(todoDto);
+            }
+        }
+        catch (Exception e){System.out.println(e);} return list;
+    }
 
     //  3. HTTP PUT
     public int toDoPut(ToDoDto toDoDto){

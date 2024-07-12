@@ -3,16 +3,28 @@ package example.day07.todo;
 
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/todo")
 public class ToDoController {
 
     ToDoDto toDoDto = new ToDoDto();
+
+    //[1]
+    @GetMapping("/get")
+    public boolean toDoGet(HttpServletRequest request){
+        String key = request.getParameter("key");
+        return ToDoDao.getInstance().toDoGet(key);
+    }
+    //[2]
+    @PostMapping("/post")
+    public ArrayList<ToDoDto> toDoPost(HttpServletRequest request){
+
+        return ToDoDao.getInstance().toDoPost();
+    }
     //  3. HTTP PUT
     @PutMapping("/put")
     public int toDoPut(HttpServletRequest request){
