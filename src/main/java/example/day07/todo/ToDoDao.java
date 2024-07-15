@@ -69,7 +69,6 @@ public class ToDoDao {
                 ps.setInt(1,toDoDto.gettNo());
                 int count = ps.executeUpdate();
                 toDoDto.settState(1);
-                System.out.println(toDoDto.gettState());
                 if(count == 1){
                     return 1;
                 }

@@ -24,7 +24,10 @@
     > 1. HttpServletRequest request
         > request.getParameter("(쿼리스트링) 매개변수 key")
     > 2. @RequestParam
-
+        > 1) 쿼리스트링의 매개변수명과 메소드의 매개변수명이 동일하면 생략
+            URL?key=10 -> method(int key)
+        > 2) 쿼리스트링의 매개변수명과 메소드의 매개변수명이 동일하지 않으면 쿼리스트링의 매핑할 매개변수 정의
+            URL?key=10 -> method(@RequestParam("key") int math)
     > *@RequestBody HTTP BODY 본문(json)
 
 > HTTP 데이터 응답하는 방법
