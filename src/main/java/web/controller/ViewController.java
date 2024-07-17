@@ -1,0 +1,28 @@
+package web.controller;
+
+//  AJAX 통신용이 아닌 템플릿 반환하는 컨트롤러 //
+
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+//  @RestController             //  @Controller + @ResponseBody(응답 JSON 객체)
+@Controller                     //  JSON 객체가 아닌 템플릿 파일 반한하므로 @ResponseBody 없이 사용 가능
+public class ViewController {
+    //  1. 레이아웃
+    @GetMapping("/")    //  http://localhost:8080                //  페이지 요청은 HTTP 의 get 방식을 주로 사양한다.
+    public String index(){
+        return "index.html";          // templates 폴더 내 반환할 경로의 파일명
+    }
+    //  2. 회원 관련 경로 설정
+    @GetMapping("/member/signup")
+    public String mSignUp(){
+        return "/member/signUp.html";
+    }
+    @GetMapping("/member/logIn")
+    public String mLogIn(){
+        return "/member/logIn.html";
+    }
+
+}
