@@ -20,7 +20,7 @@ public class ViewController {
     public String mSignUp(){
         return "/member/signUp.html";
     }
-    @GetMapping("/member/logIn")
+    @GetMapping("/member/login")
     public String mLogIn(){
         return "/member/logIn.html";
     }
