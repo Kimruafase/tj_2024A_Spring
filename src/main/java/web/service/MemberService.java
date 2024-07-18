@@ -41,9 +41,15 @@ public class MemberService {
     public MemberDto mLogInCheck(){
         //  1. 현재 요청을 보내온 클라이언트의 세션 객체 호출
         HttpSession session = request.getSession();
+
         //  2. 세션 객체 내 속성 값 호출, 타입 변환이 필수
-        MemberDto logInDto = (MemberDto) session.getAttribute("logInDto");
-        return logInDto;
+        Object object = session.getAttribute("logInDto");
+
+        //  3. 유효성 검사
+        if(object != null){
+            return (MemberDto) object;
+        }
+        return null;
     }
 
     //  2-2. 로그아웃 : 세션 초기화
@@ -66,9 +72,11 @@ public class MemberService {
     //  5. 내 정보 페이지
     public MemberDto getMyInfo(){
         HttpSession session = request.getSession();
+        if(session.getAttribute("logInDto") == null){
+            return null;
+        }
         int loginNo = ( (MemberDto) session.getAttribute("logInDto")).getNo();
-        System.out.println(loginNo);
-        MemberDto memberDto = memberDao.getMyInfo(loginNo);
-        return memberDto;
+
+        return memberDao.getMyInfo(loginNo);
     }
 }
