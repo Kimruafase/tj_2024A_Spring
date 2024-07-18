@@ -24,5 +24,13 @@ public class ViewController {
     public String mLogIn(){
         return "/member/logIn.html";
     }
+    @GetMapping("/member/search")
+    public String mSearch(){
+        return "/member/search.html";
+    }
+    @GetMapping("/member/mypage")
+    public String mMypage(){
+        return "/member/myinfo.html";
+    }
 
 }
