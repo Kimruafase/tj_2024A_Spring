@@ -10,6 +10,10 @@ function myInfo(){
         url : "/member/myInfo",
         success : function response (result){
             console.log(result)
+            if(result == ''){
+                alert("로그인 후 접속하세요");
+                location.href="/member/login";
+            }
             html = `<div>
                         <ul>
                             <li>
