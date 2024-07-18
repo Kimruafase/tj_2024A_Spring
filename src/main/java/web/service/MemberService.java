@@ -72,7 +72,7 @@ public class MemberService {
     //  5. 내 정보 페이지
     public MemberDto getMyInfo(){
         HttpSession session = request.getSession();
-        if(session.getAttribute("logInDto") == null){
+        if(session.getAttribute("logInDto") == null){   // 만약 비로그인 상태라면
             return null;
         }
         int loginNo = ( (MemberDto) session.getAttribute("logInDto")).getNo();
