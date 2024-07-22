@@ -36,6 +36,11 @@ public class MemberController {
     public boolean mLogout(){
         return memberService.mLogOut();
     }
+    //  2-3. 아이디 중복 검사
+    @GetMapping("/idCheck")
+    public boolean idCheck(String id){
+        return memberService.idCheck(MemberDto.builder().id(id).build());
+    }
 
     //  3. 아이디 찾기
     @PostMapping("/idSearch")

@@ -11,14 +11,12 @@ import web.model.dto.MemberDto;
 public class MemberService {
 
     @Autowired MemberDao memberDao;
-
+    @Autowired HttpServletRequest request;  //  현재 요청을 보낸 클라이언트의 HTTP 요청 정보를 갖는 객체 주입
 
     //  1. 회원 가입
     public boolean signUp(MemberDto memberDto){
         return memberDao.signUp(memberDto);
     }
-
-    @Autowired HttpServletRequest request;  //  현재 요청을 보낸 클라이언트의 HTTP 요청 정보를 갖는 객체 주입
 
     //  2. 로그인
     public boolean logIn(MemberDto memberDto){
@@ -57,6 +55,10 @@ public class MemberService {
         //  현재 요청을 보내온 클라이언트의 세션 객체를 호출하고 모든 속성 값 초기화
         request.getSession().invalidate();
         return true;
+    }
+    //  2-3. 아이디 중복 검사
+    public boolean idCheck(MemberDto memberDto){
+        return memberDao.idCheck(memberDto);
     }
 
     //  3. 아이디 찾기

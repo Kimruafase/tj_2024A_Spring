@@ -45,6 +45,23 @@ public class MemberDao extends Dao{
         return 0;   //  회원 번호를 못 찾아서 0 반환
     }
 
+    //  2-3. 아이디 중복 검사
+    public boolean idCheck(MemberDto memberDto){
+        try{
+            String sql = "select *from member where binary(id) = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,memberDto.getId());
+
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return false;
+            }
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return true;
+    }
+
     //  3. 아이디 찾기
     public String idSearch(MemberDto memberDto){
         try {
@@ -102,4 +119,6 @@ public class MemberDao extends Dao{
         }
         return null;
     }
+
+
 }

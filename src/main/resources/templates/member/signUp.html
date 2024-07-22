@@ -10,11 +10,29 @@
     </div>
     회원가입 페이지
     <form>
-        아이디 : <input id="idInput"/> <br>
-        비밀번호 : <input id="pwInput"/> <br>
-        이름 : <input id="nameInput"/> <br>
-        이메일 : <input id="emailInput"/> <br>
-        연락처 : <input id="phoneInput"/> <br>
+        아이디 : <input id="idInput" onkeyup="idCheck()"/>
+        <div class="idCheckBox">
+
+        </div>
+        <br>
+        비밀번호     : <input id="pwInput" type="password"/> <br>
+        비밀번호 확인 : <input id="pwConfirm" onkeyup="pwCheck()"  type="password"/>
+        <div class="pwCheckBox">
+
+        </div>
+        이름 : <input id="nameInput" onkeyup="nameCheck()"/>
+        <div class="nameCheckBox">
+
+        </div>
+        연락처 : <input id="phoneInput" onkeyup="phoneCheck()"/>
+        <div class="phoneCheckBox">
+
+        </div>
+        이메일 : <input id="emailInput" onkeyup="emailCheck()"/>
+        <div class="emailCheckBox">
+
+        </div>
+
         <button type="button" onclick="doSignUp()"> 회원가입 </button>
     </form>
     <div th:replace = "~{/footer.html :: footer}">
