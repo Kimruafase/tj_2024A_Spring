@@ -1,0 +1,32 @@
+> 용어
+    > SMTP : Simple Mail Transfer Protocol : 간이 우현 전송 규악
+        > 이메일을 주고 받는데 사용되는 프로토콜
+    > MIME : 전자 우편을 전송하기 위한 표준 포멧
+
+> 자바에서 이메일 전송하는 방법
+> 1. Gradle dependency 추가
+    > spring.io -> java mail sender
+
+> 2. 해당 이메일 호스트 설정
+    > 1) 네이버 로그인
+    > 2) 네이버 메일 -> 환경 설정 -> 상단메뉴(POP3/SMTP 설정)
+    > 3) IMAP/SMTP 선택 -> 사용함 체크 -> 저장
+
+> 3. properties 파일에서 호스트 정보 등록
+    # 3. (네이버 기준) 이메일 호스트 정보
+        # 3-1. 네이버 회사의 smtp 호스트 서버 이름
+    spring.mail.host = smtp.naver.com
+
+        # 3-2. 네이버 회사의 smtp port 번호
+    spring.mail.port = 587
+
+        # 3-3. 네이버 회사의 smtp 호스트를 바용할 네이버 계정(띄어쓰기 주의)
+        # public 으로 설정된 git 저장소에 올리기 금지
+    spring.mail.username = ''
+    spring.mail.password = ''
+
+        # 3-4. 비밀번호 인증 여부
+    spring.mail.properties.mail.smtp.auth = true
+
+        # 3-5. 보안 인증 여부, TLS 보안 연결 사용하겠다는 뜻
+    spring.mail.properties.mail.smtp.starttls = true

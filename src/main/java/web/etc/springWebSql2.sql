@@ -27,4 +27,12 @@ select *from member where name = "김민석" and phone = "010-0011-0011";
 select *from member where id="qwe" and phone = "010-0011-0011";
 # select *from member where id= ? and phone = ?
 
+# 아이디 중복검사
+select * from member where id ="qwe";
+select * from member where id ="QWE";
+	# 만일 대소문자를 구분하는 데이터 검색을 할때는 binary(필드명) 사용
+    # binary(필드명) : 문자가 아닌 byte를 기준으로 비교, 검색을 한다.
+select *from member where binary(id) = "qwe"; # 소문자 qwe
+select *from member where binary(id) = "QWE"; # 대문자 QWE
+	# JDBC : select *from member where binary(id) = ?
 

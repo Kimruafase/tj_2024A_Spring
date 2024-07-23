@@ -64,4 +64,15 @@ public class MemberController {
         return memberService.getMyInfo();
     }
 
+    //  6. 회원 정보 수정
+    @PutMapping("/myUpdate")
+    public boolean updateMyInfo(String oldPw, String newPw, String phone, String name){
+        return memberService.updateMyInfo(oldPw,newPw,phone,name);
+    }
+
+    //  7. 회원 삭제
+    @DeleteMapping("/myDelete")
+    public boolean deleteMyInfo(String pw){
+        return memberService.deleteMyInfo(pw);
+    }
 }

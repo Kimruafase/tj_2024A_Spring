@@ -120,5 +120,43 @@ public class MemberDao extends Dao{
         return null;
     }
 
+    //  6. 회원 정보 수정
+    public boolean updateMyInfo(String oldPw, String newPw, String phone, String name, int loginNo){
+        try{
+            String sql = "update member set name = ?, pw = ?, phone = ? where no = ? and pw = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,name);
+            ps.setString(2,newPw);
+            ps.setString(3,phone);
+            ps.setInt(4,loginNo);
+            ps.setString(5,oldPw);
+
+            int count = ps.executeUpdate();
+            if(count == 1){
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    //  7. 회원 삭제
+    public boolean deleteMyInfo(String pw, int loginNo){
+        try{
+            String sql = "delete from member where pw = ? and no = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1,pw);
+            ps.setInt(2,loginNo);
+
+            int count = ps.executeUpdate();
+            if(count == 1){
+                return true;
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return false;
+    }
 
 }

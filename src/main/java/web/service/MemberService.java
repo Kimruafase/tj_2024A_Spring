@@ -81,4 +81,24 @@ public class MemberService {
 
         return memberDao.getMyInfo(loginNo);
     }
+
+    //  6. 회원 정보 수정
+    public boolean updateMyInfo(String oldPw, String newPw, String phone, String name){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("logInDto") == null){   // 만약 비로그인 상태라면
+            return false;
+        }
+        int loginNo = ( (MemberDto) session.getAttribute("logInDto")).getNo();
+        return memberDao.updateMyInfo(oldPw,newPw,phone,name,loginNo);
+    }
+
+    //  7. 회원 삭제
+    public boolean deleteMyInfo(String pw){
+        HttpSession session = request.getSession();
+        if(session.getAttribute("logInDto") == null){   // 만약 비로그인 상태라면
+            return false;
+        }
+        int loginNo = ( (MemberDto) session.getAttribute("logInDto")).getNo();
+        return memberDao.deleteMyInfo(pw,loginNo);
+    }
 }
