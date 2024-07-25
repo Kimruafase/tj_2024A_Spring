@@ -41,4 +41,28 @@ public class ViewController {
         return "/member/leave.html";
     }
 
+    // 게시물 전체 페이지 출력
+    @GetMapping("/board/all")
+    public String boardAllPrint(){
+        return "/board/all.html";
+    }
+
+    // 게시물 쓰기 페이지 출력
+    @GetMapping("/board/write")
+    public String boardWrite(){
+        return "/board/write.html";
+    }
+
+    // 게시물 개별 페이지 출력
+    @GetMapping("/board/detail")
+    public String boardDetail(){
+        return "/board/detail.html";
+    }
+
+    // 게시물 수정 페이지 출력
+    @GetMapping("/board/update")
+    public String boardUpdate(){
+        return "/board/update.html";
+    }
+
 }

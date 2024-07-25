@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- 부트스트랩 CSS -->
+
+</head>
+<body>
+<div th:replace="~{ /header.html :: header }"></div>
+
+<div>
+    <ul>
+        <li>
+            카테고리명
+        </li>
+        <li>
+            게시물번호
+        </li>
+        <li>
+            제목
+        </li>
+        <li>
+            내용
+        </li>
+        <li>
+            작성자 id
+        </li>
+        <li>
+            작성일
+        </li>
+        <li>
+            조회수
+        </li>
+    </ul>
+</div>
+
+
+<button type="button" onclick="location.href='/board/update?bno=3'">수정하러가기</button>
+
+
+<!-- 부트스트랩 JS -->
+
+<script src="/board/detail.js"></script>
+<script src="/js/board/category.js"></script>
+<div th:replace="~{ /footer.html :: footer }"></div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:replace="~{ /header.html :: header }"></div>
+
+<h3> 수정 페이지 </h3>
+<form>
+    새로운 제목:           <input id="newTitle" type="text" /> <br/>
+    새로운 내용:          <input id="newContent" type="text"/> <br/>
+    <select id="category">
+        <option  value="1">자유</option>
+        <option value="2">노하우</option>
+    </select>
+    <button onclick="update()" type="button"> 수정하기 </button>
+</form>
+<script src="/js/board/category.js"></script>
+<div th:replace="~{ /footer.html :: footer }"></div>
+</body>
+</html>
