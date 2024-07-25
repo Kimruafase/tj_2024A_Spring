@@ -21,7 +21,8 @@ function doUpdate(){
     $.ajax({
         method : 'put',
         url : "/member/myUpdate",
-        data : {name : nameUpdate, newPw : pwUpdate, phone : phoneUpdate, oldPw : pwOld},
+        data : JSON.stringify({name : nameUpdate, newPw : pwUpdate, phone : phoneUpdate, oldPw : pwOld}),
+        contentType : "application/json",
         success : function response(result){
             console.log(result);
             if(result){
@@ -30,6 +31,10 @@ function doUpdate(){
             }else{
                 alert("회원 정보 수정 실패");
             }
+        },
+        error : function response(result){
+            console.log(result);
+
         }
     })
 }

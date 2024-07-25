@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import web.model.dto.MemberDto;
 import web.service.MemberService;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/member")
 public class MemberController {
@@ -66,8 +68,9 @@ public class MemberController {
 
     //  6. 회원 정보 수정
     @PutMapping("/myUpdate")
-    public boolean updateMyInfo(String oldPw, String newPw, String phone, String name){
-        return memberService.updateMyInfo(oldPw,newPw,phone,name);
+    public boolean updateMyInfo(@RequestBody Map<String, String> map){      //  MAP<K,V> 로 받음
+        System.out.println("map = " + map);                                 //  데이터를 잘 받았는 지 확인
+        return memberService.updateMyInfo(map);
     }
 
     //  7. 회원 삭제

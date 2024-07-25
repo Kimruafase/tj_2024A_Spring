@@ -3,6 +3,8 @@ package web.model.dao;
 import org.springframework.stereotype.Component;
 import web.model.dto.MemberDto;
 
+import java.util.Map;
+
 @Component
 public class MemberDao extends Dao{
 
@@ -121,15 +123,15 @@ public class MemberDao extends Dao{
     }
 
     //  6. 회원 정보 수정
-    public boolean updateMyInfo(String oldPw, String newPw, String phone, String name, int loginNo){
+    public boolean updateMyInfo(Map<String, String> map, int loginNo){
         try{
             String sql = "update member set name = ?, pw = ?, phone = ? where no = ? and pw = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1,name);
-            ps.setString(2,newPw);
-            ps.setString(3,phone);
+            ps.setString(1,map.get("name"));
+            ps.setString(2,map.get("newPw"));
+            ps.setString(3,map.get("phone"));
             ps.setInt(4,loginNo);
-            ps.setString(5,oldPw);
+            ps.setString(5,map.get("oldPw"));
 
             int count = ps.executeUpdate();
             if(count == 1){

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import web.model.dao.MemberDao;
 import web.model.dto.MemberDto;
 
+import java.util.Map;
+
 @Service
 public class MemberService {
 
@@ -83,13 +85,13 @@ public class MemberService {
     }
 
     //  6. 회원 정보 수정
-    public boolean updateMyInfo(String oldPw, String newPw, String phone, String name){
+    public boolean updateMyInfo(Map<String, String> map){
         HttpSession session = request.getSession();
         if(session.getAttribute("logInDto") == null){   // 만약 비로그인 상태라면
             return false;
         }
-        int loginNo = ( (MemberDto) session.getAttribute("logInDto")).getNo();
-        return memberDao.updateMyInfo(oldPw,newPw,phone,name,loginNo);
+        int loginNo = ( (MemberDto) session.getAttribute("logInDto")).getNo();  // 로그인한 회원 번호를 int 타입으로 저장
+        return memberDao.updateMyInfo(map,loginNo);
     }
 
     //  7. 회원 삭제
