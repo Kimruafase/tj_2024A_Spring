@@ -1,0 +1,35 @@
+> stream : 데이터가 다니는 통로의 흐름
+    > 주로 자바 외 장치와 데이터를 주고 받을 때 사용 ex) 키보드, 파일 처리, JDBC, 네트워크
+
+> HTML 에서 첨부파일을 입력받을 때
+    > 1. <input type="file"/ id ="file">
+    > 2. JS 에서 첨부파일의 value 를 호출하면 document.querySelector("#file").value;
+        > "C:\fakepath\업로드한 파일명"
+        > JS 는 유저(클라이언트)의 실제 파일 경로를 얻어낼 수 없다. 이것은 브라우저의 법 / 규칙
+
+> 업로드 : 파일 올리기
+    > 유저(클라이언트) PC / 모바일의 파일을 서버(스프링 내장 톰캣 서버)로 이동 / 복사
+    > 이동 / 복사
+        > 대용량 이동 시에는 HTTP 는 byte 형식만 지원
+
+> 다운로드 : 파일 내려받기
+
+> 업로드 구현 방법
+    > 1. HTML : <form class = "boardWriteForm">
+                <input type = "file" class ="bfile"/>
+                </form>
+    > 2. Form 전체 HTML 호출
+        > JS : let boardWriteForm = document.querySelector(".boardWriteForm");
+    > 3. Form 전체 HTML 을 byte 로 변환해주는 기능이 담긴 객체로 변환
+        > JS : let boardWriteFormData = new FormData(boardWriteForm);
+
+    > 4. AJAX 대용량 전송 필수 옵션
+        > method : post
+        > data : boardWriteFormData
+        > contentType : false
+        > processData : false
+
+> * HTML FORM 과 JAVA 의 BoardDto 필드와 mapping 할 때 주의할 점 : HTML name 속성과 Dto 의 필드명이 동일해야한다.
+> JAVA 에서 대용량 byte 의 타입
+    > MultipartFile 인터페이스 : Spring 이 제공하는 라이브러리
+        > 주로 대용량 byte 파일을 조작할 때 사용되는 인터페이스

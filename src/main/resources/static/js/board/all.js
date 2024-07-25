@@ -11,7 +11,7 @@ function allPrint(){
         success : function response (result){console.log(result)
             result.forEach(r => {
                 html += `
-                <tr> <th> ${r.bno}  </th> <th><a href="/board/detail?${r.bno}">${r.btitle}</a>  </th> <th> ${r.id}  </th> <th> ${r.bdate}  </th> <th> ${r.bview}  </th>  </tr>
+                <tr> <th> ${r.bno}  </th> <th><a href="/board/detail?bno=${r.bno}">${r.btitle}</a>  </th> <th> ${r.id}  </th> <th> ${r.bdate}  </th> <th> ${r.bview}  </th>  </tr>
                 `;
             });
             board.innerHTML = html;

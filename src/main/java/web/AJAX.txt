@@ -25,7 +25,12 @@
         > 4. data : { key : value , key : value }                  : HTTP 보낼 데이터
         > 5. contentType : ""                                      : HTTP 보낼 데이터의 타입/형식, 받는사람이 데이터를 받는 데이터를 처리하는 분류방식
             > 기본값/생략시 : content-type: application/x-www-form-urlencoded; @RequestParam
-            > contentType : "application/json"
+            > 대용량 FORM : ajax 에서는 폼 전송 시 첨부파일(대용량) 타입은 multipart/form-data 활용
+                > contentType : false
+                > processData : false
+            > JSON
+                > contentType : "application/json"
+
         > 6. success : ( r ) => { }                                : 통신 성공 시 실행되는 함수 -> 응답 데이터가 함수의 매개변수로 받는다,
         > 7. error : ( e ) => { }                                  : 통신 실패 시 실행되는 함수 -> 실패 사유가 함수의 매개변수로 받는다.
 

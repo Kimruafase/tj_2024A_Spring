@@ -12,7 +12,7 @@
 <body>
 <div th:replace="~{ /header.html :: header }"></div>
 
-<div>
+<div id = "detailArea">
     <ul>
         <li>
             카테고리명
@@ -38,14 +38,17 @@
     </ul>
 </div>
 
+<div>
+    <button type="button" onclick="doDelete()"> 삭제 </button>
+</div>
 
-<button type="button" onclick="location.href='/board/update?bno=3'">수정하러가기</button>
+
 
 
 <!-- 부트스트랩 JS -->
 
-<script src="/board/detail.js"></script>
-<script src="/js/board/category.js"></script>
+<script src="/js/board/detailcall.js"></script>
+<script src="/js/board/delete.js"></script>
 <div th:replace="~{ /footer.html :: footer }"></div>
 </body>
 </html>
