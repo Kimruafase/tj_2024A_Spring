@@ -10,7 +10,7 @@
 <h3> 수정 페이지 </h3>
 <form>
     새로운 제목:           <input id="newTitle" type="text" /> <br/>
-    새로운 내용:          <input id="newContent" type="text"/> <br/>
+    새로운 내용:          <textarea id="newContent" type="textarea"></textarea> <br/>
     <select id="category">
         <option  value="1">자유</option>
         <option value="2">노하우</option>
@@ -22,3 +22,4 @@
 <div th:replace="~{ /footer.html :: footer }"></div>
 </body>
 </html>
+

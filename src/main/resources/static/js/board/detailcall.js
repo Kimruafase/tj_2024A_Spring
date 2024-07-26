@@ -22,9 +22,11 @@ function detailCall(){
         success : function response (result){
             
                 html += `<div> 카테고리 : ${result.bcname} </div>
-                        <div> 게시물 번호 : ${result.bno}, 제목 : ${result.btitle} </div>
+                        <div> 게시물 번호 : ${result.bno}</div>
+                        <div> 제목 : ${result.btitle} </div>
                         <div> 내용 : ${result.bcontent} </div>
                         <div> 작성자 id : ${result.id}, 작성일 : ${result.bdate}, 조회수 : ${result.bview} </div>
+                        <div> 첨부파일 :  ${result.bfile == null ? '' : result.bfile} <a href="/file/download?filename=${result.bfile}"> 다운로드 </a> </div>
 
                         <div>
                             <button type="button" onclick="location.href='/board/update?bno=${urlParams}'"> 수정 </button>

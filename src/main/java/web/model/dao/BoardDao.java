@@ -84,6 +84,8 @@ public class BoardDao extends Dao {
                 map.put("id",rs.getString("id"));
                 map.put("bdate",rs.getString("bdate"));
                 map.put("bview",String.valueOf(rs.getInt("bview")));
+                map.put("bfile",rs.getString("bfile"));
+                map.put("bcno",rs.getString("bcno"));
             }
 
         }catch (Exception e){
