@@ -14,7 +14,6 @@ public class FileController {
     //  1. 다운로드 요청 처리
     @GetMapping("/file/download")
     public void fileDownLoad(String filename){
-        System.out.println("FileController.fileDownLoad");
         System.out.println("fileName = " + filename);
         fileService.fileDownLoad(filename);
     }
