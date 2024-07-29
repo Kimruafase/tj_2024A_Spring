@@ -1,45 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- include summernote css/js, 부트스트랩 버전과 서머노트 버전이 다름-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" />
+
 </head>
+
 <body>
 
-<div th:replace="~{ /header.html :: header }"></div>
-<h3> 게시물 쓰기 </h3>
+    <div th:replace="~{ /header.html :: header }"></div>
+    <h3> 게시물 쓰기 </h3>
 
-<form class="boardWriteForm">
-    <div>
-        <select name="bcno" id="category">
-            <option value="1">ㅇㅇ</option>
-            <option value="2">ㅇㅇ</option>
-        </select>
-    </div>
-    <div>
-        제목 : <input name="btitle" id="btitle" type="text" class="form-control" /> <br />
-    </div>
-    <div>
-        내용 : <textarea name="bcontent" id="bcontent" rows="10" class="form-control"></textarea>
-    </div>
-    <div>
-        첨부파일 : <input name="uploadFile" id="bfile" type="file"/>
-    </div>
-    <div>
-        <button onclick="_write()" type="button"> 작성하기 </button>
-    </div>
-    
+    <form class="boardWriteForm">
+        <div>
+            <select name="bcno" id="category">
+                <option value="1">ㅇㅇ</option>
+                <option value="2">ㅇㅇ</option>
+            </select>
+        </div>
+        <div>
+            제목 : <input name="btitle" id="btitle" type="text" class="form-control" /> <br />
+        </div>
+        <div>
+            내용 : <textarea name="bcontent" id="summernote" rows="10" class="form-control"></textarea>
+        </div>
+        <div>
+            첨부파일 : <input name="uploadFile" id="bfile" type="file" />
+        </div>
+        <div>
+            <button onclick="_write()" type="button"> 작성하기 </button>
+        </div>
 
 
-</form>
 
-<!-- <form>
+    </form>
+
+    <!-- <form>
     글쓰기 : <input class="나중에 정하세요" />
     <button onclick="_write()" type="button"> 쓰기 </button>s
   </form> -->
-
-<script src="/js/board/write.js"></script>
-<script src="/js/board/category.js"></script>
-<div th:replace="~{ /footer.html :: footer }"></div>
+    <!-- summernote js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/lang/summernote-ko-KR.min.js"></script>
+    <script src="/js/board/write.js"></script>
+    <script src="/js/board/category.js"></script>
+    <div th:replace="~{ /footer.html :: footer }"></div>
 </body>
+
 </html>

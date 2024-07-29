@@ -30,7 +30,7 @@ console.log('write.js');
 
 
 // 2. 첨부파일을 전송하는 대용량 form 타입의 통신
-function _write(){
+function _write() {
     //  1) form 가져오기 
     let boardWriteForm = document.querySelector(".boardWriteForm");
     console.log(boardWriteForm);
@@ -39,18 +39,30 @@ function _write(){
     console.log(boardWriteFormData);
 
     $.ajax({
-        method : "post",
-        url : "/board/post",
-        data : boardWriteFormData,
+        method: "post",
+        url: "/board/post",
+        data: boardWriteFormData,
         contentType: false,
         processData: false,
-        success : r =>{
+        success: r => {
             console.log(r);
-            location.href="/board/all"
+            location.href = "/board/all"
         },
-        error : e =>{
+        error: e => {
             console.log(e);
         }
 
     })
 }
+
+// 3. 서머노트 실행
+$(document).ready(function () {
+
+    //  서머노트 옵션
+    let option = {
+        height: 500,   // 에디터 높이
+        lang: 'ko-KR'  // 도움말을 한글로 표기
+    }
+
+    $('#summernote').summernote(option);
+});

@@ -19,7 +19,7 @@ import java.util.UUID;
 public class FileService {
 
     //  첨부파일을 저장(복사 / 이동)할 경로 만들기
-    String uploadPath = "C:\\Users\\tj-bu-703-020\\Desktop\\tj_2024A_Spring\\src\\main\\resources\\static\\upload\\";
+    String uploadPath = "C:\\Users\\tj-bu-703-17\\Desktop\\tj_2024A_Spring\\src\\main\\resources\\static\\upload";
 
 
     //  1. 파일 업로드
