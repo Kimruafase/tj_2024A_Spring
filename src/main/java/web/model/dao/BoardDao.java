@@ -36,13 +36,47 @@ public class BoardDao extends Dao {
         return false;
     }
 
+    // 전체 게시물 수 반환 처리
+    public int getTotalBoardSize(int bcno){
+        try{
+            String sql = "select count(*) as 총게시물수 from board";
+            // 카테고리가 존재하면 -> 0 카테고리 없음 의미, 1 이상 카테고리의 pk 번호
+            if(bcno > 0){
+                sql += " where bcno = " + bcno;
+            }
+            System.out.println("sql = " + sql);
+            //  1. 전체보기 : select count(*) as 총게시물수 from board
+            //  2. 카테고리 별로 보기 : select count(*) as 총게시물수 from board where bcno = 숫자
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return 0;
+    }
+
 
     //글 전체 호출
-    public ArrayList<BoardDto> all(){
+    public ArrayList<BoardDto> all(int startRow, int boardSize, int bcno){
         ArrayList<BoardDto> list = new ArrayList<>();
         try {
             String sql="select *from board join member on board.no = member.no";
+            if(bcno > 0){
+                //  일반 조건
+                    //  전체보기 : 카테고리가 존재하지 않으면 생략
+                    //  카테고리별 보기 : 카테고리 번호가 존재하면 where 절 추가 bcno 1 이상
+                sql += " where bcno = " + bcno;
+            }
+                    sql += " order by board.bno desc limit ?, ?";
+
+            System.out.println("sql = " + sql);
+            //  1. 조회 2. join 테이블 3. join 조건  4. 일반(where) 조건 5. 정렬, 내림차순 6. 레코드 제한, 페이징
             ps = conn.prepareStatement(sql);
+            ps.setInt(1,startRow);
+            ps.setInt(2,boardSize);
             rs = ps.executeQuery();
             while (rs.next()){
                 int bno = rs.getInt("bno");
