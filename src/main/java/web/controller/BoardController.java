@@ -27,8 +27,10 @@ public class BoardController {
     //글 전체 호출
     @GetMapping("/call")
     public BoardPageDto all(BoardPageDto pageDto) {
-        System.out.println("pageDto = " + pageDto); // 1. 현재 페이징 처리에서 사용할 페이지 번호
-                                                    // 2. 현재 선택된 카테고리 번호
+        System.out.println("pageDto = " + pageDto); // 1. page          : 현재 페이징 처리에서 사용할 페이지 번호
+                                                    // 2. bcno          : 현재 선택된 카테고리 번호
+                                                    // 3. searchKey     : 검색 조회 시 사용되는 필드명
+                                                    // 4. searchKeyword : 검색 조회 시 사용되는 필드의 값
         return boardService.all(pageDto);
     }
 

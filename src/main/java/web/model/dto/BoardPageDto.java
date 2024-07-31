@@ -21,5 +21,8 @@ public class BoardPageDto {
     private int startBtn;           //  5. 페이지 별 시작 버튼 번호
     private int endBtn;             //  6. 페이지 별 끝 버튼 번호
     private int bcno;               //  7. 현재 카테고리 번호
+    //  검색 필드
+    private String searchKey;       //  8. 검색 조회 시 사용되는 필드명
+    private String searchKeyword;   //  9. 검색 조회 시 사용되는 필드의 값
 
 }

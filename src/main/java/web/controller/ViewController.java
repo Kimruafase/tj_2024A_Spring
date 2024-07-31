@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller                     //  JSON 객체가 아닌 템플릿 파일 반한하므로 @ResponseBody 없이 사용 가능
 public class ViewController {
     //  1. 레이아웃
-    @GetMapping("/")    //  http://localhost:8080                //  페이지 요청은 HTTP 의 get 방식을 주로 사양한다.
+    @GetMapping("/")    //  http://localhost:8080                //  페이지 요청은 HTTP 의 get 방식을 주로 사용한다.
     public String index(){
         return "index.html";          // templates 폴더 내 반환할 경로의 파일명
     }

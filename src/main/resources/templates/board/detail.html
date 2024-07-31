@@ -1,54 +1,79 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-
+    <link rel="stylesheet" href="/css/detail.css">
     <!-- 부트스트랩 CSS -->
 
 </head>
+
 <body>
-<div th:replace="~{ /header.html :: header }"></div>
+    <div th:replace="~{ /header.html :: header }"></div>
+    <div class="container viewBox">
 
-<div id = "detailArea">
-    <ul>
-        <li>
-            카테고리명
-        </li>
-        <li>
-            게시물번호
-        </li>
-        <li>
-            제목
-        </li>
-        <li>
-            내용
-        </li>
-        <li>
-            작성자 id
-        </li>
-        <li>
-            작성일
-        </li>
-        <li>
-            조회수
-        </li>
-    </ul>
-</div>
+        <div>
+            <div class="bcName">
+                카테고리명
+            </div>
+            <div class="bTitle">
+                안녕하세요 (제목 구역)
+            </div>
+            <div class="etcBox">
+                (작성자) (조회수) (작성일)
+            </div>
+            <div class="bContent">
+                내용 (내용구역)
+            </div>
+            <div class="bFile">
+                첨부파일(첨부파일 구역)
+            </div>
+            <div class="btnBox">
 
-<div>
-    <button type="button" onclick="doDelete()"> 삭제 </button>
-</div>
+            </div>
+        </div>
+    </div>
+    <div id="detailArea">
+        <ul>
+            <li>
+                카테고리명
+            </li>
+            <li>
+                게시물번호
+            </li>
+            <li>
+                제목
+            </li>
+            <li>
+                내용
+            </li>
+            <li>
+                작성자 id
+            </li>
+            <li>
+                작성일
+            </li>
+            <li>
+                조회수
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <button type="button" onclick="deleteLoginTest()"> 삭제 </button>
+    </div>
 
 
 
 
-<!-- 부트스트랩 JS -->
+    <!-- 부트스트랩 JS -->
 
-<script src="/js/board/detailcall.js"></script>
-<script src="/js/board/delete.js"></script>
-<div th:replace="~{ /footer.html :: footer }"></div>
+    <script src="/js/board/detailcall.js"></script>
+    <script src="/js/board/delete.js"></script>
+    <div th:replace="~{ /footer.html :: footer }"></div>
 </body>
+
 </html>

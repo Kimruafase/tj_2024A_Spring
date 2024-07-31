@@ -37,8 +37,8 @@ function _write() {
     //  2) form HTML 을 byte로 변환 시켜주는 객체
     let boardWriteFormData = new FormData(boardWriteForm);
     console.log(boardWriteFormData);
-
     $.ajax({
+        async: false,
         method: "post",
         url: "/board/post",
         data: boardWriteFormData,

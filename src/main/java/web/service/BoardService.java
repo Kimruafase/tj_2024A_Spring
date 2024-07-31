@@ -80,12 +80,12 @@ public class BoardService {
             //  ex) 총 게시물 수 : 15개, 페이지 당 10개씩 게시물 출력, 총 개시물 수 : 1페이지 + 1 -> 2페이지
         // 전체 게시물 수 / 페이지 당 게시물 수 했을 때 나머지가 없으면 나누기 그대로 진행, 나머지가 있다면 나누기 한 값에 + 1
         // 조건 : 카테고리별 전체 게시물 번호 세기
-        int totalBoardSize = boardDao.getTotalBoardSize(pageDto.getBcno());
+        int totalBoardSize = boardDao.getTotalBoardSize(pageDto.getBcno(),pageDto.getSearchKey(),pageDto.getSearchKeyword());
 
         int totalPage = totalBoardSize % boardSize == 0 ? totalBoardSize / boardSize : totalBoardSize / boardSize + 1;
 
         //  4. Dao 에 전달 -> 조건 추가(페이징 처리, 카테고리별)
-        List<BoardDto> data = boardDao.all(startRow,boardSize,pageDto.getBcno());
+        List<BoardDto> data = boardDao.all(startRow,boardSize,pageDto.getBcno(),pageDto.getSearchKey(),pageDto.getSearchKeyword());
 
         //  5. 페이지별 시작 번튼 번호, 끝 버튼 번호
             /*

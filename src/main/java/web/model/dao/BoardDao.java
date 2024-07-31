@@ -37,12 +37,22 @@ public class BoardDao extends Dao {
     }
 
     // 전체 게시물 수 반환 처리
-    public int getTotalBoardSize(int bcno){
+    public int getTotalBoardSize(int bcno, String searchKey, String searchKeyword){
         try{
-            String sql = "select count(*) as 총게시물수 from board";
+            String sql = "select count(*) as 총게시물수 from board inner join member on board.no = member.no ";
             // 카테고리가 존재하면 -> 0 카테고리 없음 의미, 1 이상 카테고리의 pk 번호
             if(bcno > 0){
                 sql += " where bcno = " + bcno;
+            }
+            if(searchKeyword.isEmpty()){    //  문자열이 비어있으면, 검색이 없다는 의미로 해석 가능
+
+            }else{                          //  문자열이 비어있지 않다면, 검색이 있다라는 의미의 뜻으로 해석이 가능
+                if(bcno > 0){   //  카테고리가 있을 때는 and 추가
+                    sql += " and ";
+                }else{          //  카테고리가 없을 때(전체보기)는 where 추가
+                    sql += " where ";
+                }
+                sql += searchKey + " like '%" + searchKeyword + "%' ";
             }
             System.out.println("sql = " + sql);
             //  1. 전체보기 : select count(*) as 총게시물수 from board
@@ -60,15 +70,25 @@ public class BoardDao extends Dao {
 
 
     //글 전체 호출
-    public ArrayList<BoardDto> all(int startRow, int boardSize, int bcno){
+    public ArrayList<BoardDto> all(int startRow, int boardSize, int bcno, String searchKey, String searchKeyword){
         ArrayList<BoardDto> list = new ArrayList<>();
         try {
-            String sql="select *from board join member on board.no = member.no";
+            String sql = "select *from board join member on board.no = member.no";
             if(bcno > 0){
                 //  일반 조건
                     //  전체보기 : 카테고리가 존재하지 않으면 생략
                     //  카테고리별 보기 : 카테고리 번호가 존재하면 where 절 추가 bcno 1 이상
                 sql += " where bcno = " + bcno;
+            }
+            if(searchKeyword.isEmpty()){
+
+            }else{
+                if(bcno > 0){
+                    sql += " and ";
+                }else{
+                    sql += " where ";
+                }
+                sql += searchKey + " like '%" + searchKeyword + "%' ";
             }
                     sql += " order by board.bno desc limit ?, ?";
 
