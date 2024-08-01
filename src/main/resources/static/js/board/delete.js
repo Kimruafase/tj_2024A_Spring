@@ -1,7 +1,6 @@
 console.log("delete.js");
 
 function deleteLoginTest() {
-    let urlParams = new URL(location.href).searchParams.get('bno');
     $.ajax({
         async: false, // false 는 동기화
         method: 'get',
