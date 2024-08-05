@@ -1,0 +1,120 @@
+> 1. HTTP : 하이퍼 텍스트 통신 규약
+    > 상태가 무상태 프로토콜이다.
+    > 독립적이다. 데이터를 주고 받기 위한 각각의 데이터 요청과 응답
+    > HTTP 1.1(주로 사용되는 버전)
+    > 경로 : 통신할 웹 자원의 위치
+        > http://localhost:8080/board/view?bno=3
+        > 1) URL : 웹 주소, 네트워크 상의 리소스가 어디에 있는지 알려주는 규악
+            > http://localhost:8080/board/view
+        > 2) URI : 인터넷에 존재하는 각종 정보들의 유일한 이름이나 위치를 표시하는 규약
+            > * 쿼리스트링 방식      : http://localhost:8080/board/view?bno=3
+            > 내부 위치 이동 방식    : http://localhost:8080/board/view#id명
+            > 경로 매개 변수 방식    : http://localhost:8080/board/view/3
+
+    > HTTPS : HTTP 의 보안이 강화된 버전이다.
+        > 통신의 인증과 암호화를 위해 만들어진 프로토콜
+        > 인증서 발급 업체로부터 발급받는다. ex) 건강보험, 자동차보험
+        > 해당 웹페이지에서 문제 발생 시 보상해주는 보험 같은 개념
+
+    > 1-1. HTTP HEADER (HTTP 통신 정보)
+        > 1) HOST : 요청이 전송되는 타겟의 URL 주소, 해당 자원을 갖고 있는 주인, 웹 서버 주소
+        > 2) contentType : 요청과 응답을 보내는 데이터의 타입 정보, 받는 측에서 어떻게(분석, parsing) 데이터를 처리할 지 판단
+            > application/json, text/html, application/x-www-form-urlencoded, multipart/formed-data 등등
+        > 3) body : 데이터 본문
+            > POST, PUT 사용 가능, GET, DELETE 는 사용 불가능
+
+    > 1-2. HTTP METHOD
+        > 1) GET        : REST API 에서는 주로 자원 호출 요청 [ R ]
+        > 2) POST       : REST API 에서는 주로 자원 저장 요청 [ C ]
+        > 3) PUT        : REST API 에서는 주로 자원 수정 요청 [ U ]
+        > 4) DELETE     : REST API 에서는 주로 자원 삭제 요청 [ D ]
+
+    > 1-3. HTTP 를 사용하는 소프트웨어, 라이브러리, 프레임워크
+        > 1. 브라우저(ex_ 크롬, 엣지, 사파리)
+        > 2. JQUERY(AJAX)
+        > 3. APACHE - TOMCAT
+        > 4. SPRING @Controller
+        > 5. Talend API
+
+    > * 데이터와 타입
+        > 데이터 / 자료 : 순수한 정보
+        > 타입         : 정보의 분류, 자료의 식별, 자원의 사용 시 해당 자원의 사용 방법을 정의
+            > ex) JAVA -> "3" - String 타입, 3 - int 타입 , 3 - byte 타입
+
+    > * REST API : URL 을 이용한 자원의 상태를 주고 받는 아키텍처 / 구조
+
+    > * 쿼리스트링과 BODY 의 차이점
+        > ex) 편지봉투 : 보낸 사람, 받는 사람
+        > ex) 편지지   : 편지의 내용
+            > ex1) POST, BODY O
+                > ex1) 편지봉투 : (받는 사람) http://localhost:8080/board/view
+                > ex1) 편지지   : {bno : 1}
+            > ex2) GET, BODY X
+                > ex2) 편지봉투 : (받는 사람) http://localhost:8080/board/view?bno=3
+                > ex2) 편지지   : X
+
+        > 쿼리스트링 : URL 상의 자원의 정보가 노출 (보안 X)
+        > BODY     : URL 상의 자원 정보가 노출이 안된다 (보안 O), 개인정보가 존재하는 데이터는 POST, PUT 사용
+
+    > * HTTP 통신 예시
+        > 생활 속 예시) 무전기(단방향)
+            > 핸드폰(전화) <-> 핸드폰(전화)
+            > 공중 전화기(전화) <-> 핸드폰(전화)
+            > 집전화(전화) <-> 핸드폰(전화)
+        > ex1) AJAX (HTTP) <------------> Apache, Tomcat 서버 (HTTP)
+        > ex2) 크롬 (HTTP) <------------> Apache, Tomcat 서버 (HTTP)
+        > ex3) Talend API (HTTP) <------------> Apache, Tomcat 서버 (HTTP)
+
+> 2. 웹 서버
+    > 클라이언트의 요청으로부터 자원을 응답하는 컴퓨터 / 소프트웨어
+    > 종류 : 정적 서버(static pages), 동적 서버(dynamic pages)
+        > 정적 서버 : html, css, js, img 등등의 파일들
+        > 동적 서버 : jsp, 타임리프(html), 머스테치 등등의 파일들
+        > 아파치 - 톰캣 서버 : 정적 서버와 동적 서버를 동시에 지원한다.
+
+    > 2-1. WAS : Web Application Server
+        > 개념
+            > 1) Web 서버 프로그램이 설치된 컴퓨터
+            > 2) http 로부터 요청을 바당 정적 / 동적 파일 제공하는 컴퓨터
+            > 3) 클라이언트의 요청을 WAS 에게 보내고 WAS 에서 처리한 결과를 클라이언트에게 전달하는 방식
+            > 4) WAS 는 웹 서버, 웹 컨테이너, 서블릿 컨테이너라고도 불린다.
+
+        > 역할
+            > 1) Web Server(정적 파일) + Web Container(동적 파일)
+            > 2) 비즈니스 / 서비스 로직 수행
+            > 3) 여러 개 요청 관리
+
+    > 2-2. 동작 구조
+        > 1) 클라이언트가 HTTP 를 이용한 WAS 에게 요청을 보낸다.
+        > 2) WAS 는 관련된 Servlet 생성.
+        > 3) Thread 생성 or 할당 받음.
+        > 4) HttpServletRequest, HttpServletResponse 객체로 생성함.
+        > 5) Thread 가 Servlet Method 호출.
+        > 6) Service Method 는 각 Http Method 요청에 맞게 Method 를 호출함.
+        > 7) 각 Method 는 HttpServletRequest, HttpServletResponse 의 매개변수를 받아서 요청 / 응답 정보를 확인할 수 있다.
+        > 8) HttpServletResponse 객체를 이용한 Web Server 에게 응답 데이터 전달
+        > 9) 생성된 Thread 는 종료하고, HttpServletRequest, HttpServletResponse 객체도 종료.
+            > * Servlet 객체는 제거하지 않는다. 나중에 재사용하기 위해서
+
+            > client     <-> HTTP <-> WAS(웹 서버)
+                > 브라우저              > web server -> web container -> Thread 생성 -> Servlet 생성
+                > ajax                  > 정적 파일     > 동적 파일                         > init()
+                > 모바일                                                                  > service() --> doGet(), doPost() --> 추후 작업
+                                                                                         > destroy()
+
+    > 2-3. Servlet 의 생명주기
+        > 1) 메소드
+            > init() : 해당 Servlet 의 초기화 작업을 하는 메소드, Servlet 당 1번 실행
+            > service() : 해당 Servlet 이 사용자에게 서비스하기 위해 정의한 method, 클라이언트 요청마다 실행
+                > doGet(), doPost(), doPut(), doDelete() 에게 연결
+            > doXXX()   : 비즈니스 로직 처리, DB 처리
+            > destroy() : 해당 Servlet 이 메모리에게 해제, server 종료 시 실행
+
+        > 2) 생명 순서
+            > [1] 사용자로부터 요청이 들어오면 Container 로 요청 정보가 전달된다.
+            > [2] Container 배포서술사의 Servlet mapping 정보를 참조하여 해당 Servlet 을 찾는다.
+                > 만약에 최초 요청이면 Servlet 객체 생성 -> init()
+                > 최초 요청이 아니면 mapping 정보를 받아서 Servlet 객체 요청
+            > [3] class loading 한다.
+            > [4] 요청에 대한 응답 처리
+            > [5] Servlet 객체 소멸 (서버 종료 시)
