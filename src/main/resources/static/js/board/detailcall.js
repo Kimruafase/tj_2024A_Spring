@@ -1,5 +1,7 @@
 console.log("detailCall.js");
 
+let bno = new URL(location.href).searchParams.get('bno');
+
 detailCall();
 viewUpdate();
 function detailCall() {
@@ -13,19 +15,26 @@ function detailCall() {
     // ================================================================== //
 
     // 1. 현재 URL 경로상의 'no' 이름의 매개변수 값 호출 , view.html?no=7
-    let urlParams = new URL(location.href).searchParams.get('bno');
 
     $.ajax({
         method: 'get',
         url: "/board/detailcall",
-        data: { bno: urlParams },
+        data: { bno: bno },
         success: function response(result) {
 
-            html += `<div> 카테고리 : ${result.bcname} </div>
-                        <div> 게시물 번호 : ${result.bno}</div>
-                        <div> 제목 : ${result.btitle} </div>
-                        <div> 내용 : ${result.bcontent} </div>
-                        <div> 작성자 id : ${result.id}, 작성일 : ${result.bdate}, 조회수 : ${result.bview} </div>
+            html += `<div>
+                        <div class="bcName">
+                            ${result.bcname}
+                        </div>
+                        <div class="bTitle">
+                            ${result.btitle}
+                        </div>
+                        <div class="etcBox">
+                            ${result.id} , ${result.bview} , ${result.bdate}
+                        </div>
+                        <div class="bContent">
+                            ${result.bcontent}
+                        </div>
                         `;
 
             if (result.bfile == null) {
@@ -45,7 +54,6 @@ function detailCall() {
 }
 
 function updateLoginTest() {
-    let urlParams = new URL(location.href).searchParams.get('bno');
     $.ajax({
         async: false, // false 는 동기화
         method: 'get',
@@ -56,19 +64,17 @@ function updateLoginTest() {
                 alert("로그인 하고 오세요.");
                 location.href = "/member/login"
             } else {
-                location.href = `/board/update?bno=${urlParams}`;
+                location.href = `/board/update?bno=${bno}`;
             }
         }
     })
 }
 
 function viewUpdate() {
-    let urlParams = new URL(location.href).searchParams.get('bno');
-
     $.ajax({
         method: 'get',
         url: "/board/viewupdate",
-        data: { bno: urlParams },
+        data: { bno: bno },
         success: function response(result) {
             if (result) {
 
@@ -77,4 +83,64 @@ function viewUpdate() {
             }
         }
     })
+}
+
+
+// 댓글 쓰기
+function doReplyWrite() {
+    console.log("doReplyWrite()");
+    // 1. 입력 받은 댓글 내용 가져오기
+    let brcontent = document.querySelector(".brcontent").value;
+    // 현재 보고 있는 게시물번호 -> bno
+    let brindex = 0;    // 0 : 댓글(상위)
+    //  2. ajax 구문 작성
+    $.ajax({
+        async: false,
+        method: "post",
+        url: "/board/reply/write",
+        data: JSON.stringify({ brcontent: brcontent, brindex: brindex, bno: bno }),
+        contentType: "application/json",
+        //  contentType : "application/x-www-form-urlencoded" -? ajax 기본값(생략 가능)
+        //  contentType : false -> multipart/form-data
+        //  contentType : "application/json" -> JSON 전송할 떄 사용
+        success: function response(result) {
+            if (result) {
+                alert("댓글 쓰기 성공");
+            } else {
+                alert("댓글 쓰기 실패 (로그인 했는 지 확인하세요) ");
+            }
+        }
+
+    })
+
+}
+replyRead();
+// 댓글 출력
+function replyRead() {
+    console.log("replyRead()");
+    let replyBox = document.querySelector("#replyBox");
+    let html = ``;
+    $.ajax({
+        async: false,
+        method: "get",
+        url: "/board/reply/read",
+        data: { bno: bno },
+        success: function response(result) {
+            console.log(result);
+            for (let i = 0; i < result.length; i++) {
+                html += `<div>
+                        작성자 : ${result[i].no}
+                        </div>
+                        <div>
+                        내용 : ${result[i].brcontent}
+                        </div>
+                        <div>
+                        작성일 : ${result[i].brdate}
+                        </div>`;
+            }
+
+        }
+
+    })
+    replyBox.innerHTML = html;
 }

@@ -14,6 +14,7 @@ import web.model.dto.MemberDto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 public class BoardService {
@@ -154,5 +155,29 @@ public class BoardService {
     public boolean viewUpdate(int bno){
         System.out.println("조회수2");
         return boardDao.viewUpdate(bno);
+    }
+
+    // 게시물 댓글 쓰기 처리
+    public boolean bReplyWrite(Map<String, String> map){
+        //  작성자(no) 는 별도의 클라이언트로 부터 입력을 받는 구조가 아니다.
+            //  회원제 댓글이라는 가정 -> 로그인 정보는 로그인 객체에 저장된 상태
+            //  로그인 정보를 세션 객체에 저장하는 이유 -> 그 사람이 로그인을 했는지 안 했는지 체크하기 위해서
+        Object object = memberService.mLogInCheck();
+        // object 타입인 이유 -> 세션 객체에는 MemberDto 타입으로 저장했는데 꺼내서 사용하기 위해서 자바 최상위 클래스인 object 타입으로 꺼내와서 형변환을 용이하게 만듬
+
+        if(object == null){
+            return false;
+        }
+        MemberDto loginDto = (MemberDto) object;
+        int no = loginDto.getNo();
+
+        map.put("no",String.valueOf(no));   // 작성자 id 는 int 타입이기 때문에 String.valueOf로 변환해서 넣어줌
+        System.out.println("map = " + map);
+        return boardDao.bReplyWrite(map);
+    }
+
+    // 게시물 댓글 출력
+    public ArrayList<Map<String, String>> bReplyRead(int bno){
+        return boardDao.bReplyRead(bno);
     }
 }

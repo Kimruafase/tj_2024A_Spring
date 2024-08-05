@@ -233,4 +233,47 @@ public class BoardDao extends Dao {
         }
         return false;
     }
+    
+    
+    // 게시물 댓글 쓰기
+    public boolean bReplyWrite(Map<String, String> map){
+        try{
+           String sql = "insert into breply(brindex, brcontent, no, bno) values(?, ?, ?, ?)";
+           ps = conn.prepareStatement(sql);
+           ps.setInt(1, Integer.parseInt(map.get("brindex")));      // Map<String, String> 이기 때문에 value 가 String 타입이라 Integer 타입으로 강제변환해야 setInt 가능
+           ps.setString(2,map.get("brcontent"));
+           ps.setInt(3,Integer.parseInt(map.get("no")));
+           ps.setInt(4,Integer.parseInt(map.get("bno")));
+
+           int count = ps.executeUpdate();
+           if(count == 1){
+               return true;
+           }
+        }catch (Exception e){
+            System.out.println("에러는 " + e);
+        }
+        return false;
+    }
+    
+    // 게시물 댓글 출력
+    public ArrayList<Map<String, String>> bReplyRead(int bno){
+        ArrayList<Map<String, String>> list = new ArrayList<>();
+        try{
+            String sql = "select *from breply where bno = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1,bno);
+            rs = ps.executeQuery();
+            while (rs.next()){
+                Map<String, String > map = new HashMap<>();
+                map.put("no",String.valueOf(rs.getInt("no")));
+                map.put("brcontent",rs.getString("brcontent"));
+                map.put("brdate",rs.getString("brdate"));
+                list.add(map);
+            }
+            System.out.println(list);
+        }catch (Exception e){
+            System.out.println(" 에러는 " + e);
+        }
+        return list;
+    }
 }

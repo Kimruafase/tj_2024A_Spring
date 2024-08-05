@@ -15,28 +15,9 @@
     <div th:replace="~{ /header.html :: header }"></div>
     <div class="container viewBox">
 
-        <div>
-            <div class="bcName">
-                카테고리명
-            </div>
-            <div class="bTitle">
-                안녕하세요 (제목 구역)
-            </div>
-            <div class="etcBox">
-                (작성자) (조회수) (작성일)
-            </div>
-            <div class="bContent">
-                내용 (내용구역)
-            </div>
-            <div class="bFile">
-                첨부파일(첨부파일 구역)
-            </div>
-            <div class="btnBox">
 
-            </div>
-        </div>
     </div>
-    <div id="detailArea">
+    <div class="container viewBox" id="detailArea">
         <ul>
             <li>
                 카테고리명
@@ -62,12 +43,26 @@
         </ul>
     </div>
 
-    <div>
+    <div class="container">
         <button type="button" onclick="deleteLoginTest()"> 삭제 </button>
     </div>
 
+    <div class="container">
+        <textarea class="brcontent"></textarea>
+        <button type="button" onclick="doReplyWrite()"> 등록 </button>
+    </div>
+    <div id="replyBox" class="container">
+        <div>
 
+        </div>
+        <div>
 
+        </div>
+        <div>
+
+        </div>
+
+    </div>
 
     <!-- 부트스트랩 JS -->
 

@@ -5,7 +5,8 @@ import jakarta.mail.Multipart;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
-@Builder @Getter
+@Builder
+@Getter
 @Setter
 @ToString
 @NoArgsConstructor

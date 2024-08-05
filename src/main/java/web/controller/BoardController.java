@@ -61,11 +61,26 @@ public class BoardController {
         return boardService.category();
     }
 
+    // 조회수 증가
     @GetMapping("/viewupdate")
     public boolean viewUpdate(int bno){
         System.out.println("조회수1");
         return boardService.viewUpdate(bno);
     }
 
+    // 게시물의 댓글 쓰기 처리
+    @PostMapping("/reply/write")    // 쓰기는 post mapping 을 주로 사용한다. (CRUD 중에서)
+    public boolean bReplyWrite(@RequestBody Map<String, String> map){
+        // RequestBody 를 사용하는 이유 JS 에서 JSON 으로 보내는데 JAVA 에서 사용하기 위해서 객체(DTO 나 컬렉션 프레임 워크 등)로 변환
+        // 왜 map 을 쓰는가 -> dto 를 사용하지 않고 map 의 저장기능 사용
+        System.out.println("BoardController.bReplyWrite");
+        System.out.println("map = " + map);
+        return boardService.bReplyWrite(map);
+    }
 
+    // 게시물의 댓글 출력
+    @GetMapping("/reply/read")
+    public ArrayList<Map<String, String>> bReplyRead(int bno){
+        return boardService.bReplyRead(bno);
+    }
 }
