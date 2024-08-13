@@ -18,8 +18,20 @@ import java.util.UUID;
 @Service
 public class FileService {
 
+    /*
+        배포 : 내 코드를 웹 서버에 올림 / 빌드함으로써 외부(클라이언트)로 부터 리소스를 제공할 수 있다.
+        프로젝트명
+            > build 폴더 : 배포된 클래스 / 파일명 build -> upload
+             String uploadPath = "C:\\Users\\tj-bu-703-17\\Desktop\\tj_2024A_Spring\\build\\resources\\main\\static\\upload\\";
+            > src 폴더 : 배포전 개발자가 코드(파일)를 작성하는 곳 src -> upload
+                (개발자가 코드를 작성하고 있는)
+             String uploadPath = "C:\\Users\\tj-bu-703-17\\Desktop\\tj_2024A_Spring\\src\\main\\resources\\static\\upload\\";
+
+    * */
+
     //  첨부파일을 저장(복사 / 이동)할 경로 만들기
-    String uploadPath = "C:\\Users\\tj-bu-703-17\\Desktop\\tj_2024A_Spring\\src\\main\\resources\\static\\upload";
+        // 개발자 코드 프로젝트 내 upload 폴더 경로
+    String uploadPath = "C:\\Users\\tj-bu-703-17\\Desktop\\tj_2024A_Spring\\build\\resources\\main\\static\\upload\\";
 
 
     //  1. 파일 업로드

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+
+</head>
+
+<body>
+
+    <div th:replace="~{/header.html :: header}">
+
+    </div>
+    <div class="container">
+
+
+        <form id="productForm">
+            제품명 : <input name="pname" type="text" /> <br>
+            제품 가격 : <input name="pprice" type="text" /> <br>
+            제품 설명 : <textarea name="pinformation"></textarea> <br>
+            제품 사진들 : <input name="files" type="file" multiple accept="image/*" />
+            <!-- multiple : 여러 개의 파일 등록 가능, accept : 허용할 첨부파일 확장자 -->
+
+            <button type="button" onclick="onRegister()"> 등록 </button>
+
+        </form>
+
+    </div>
+    <div th:replace="~{/footer.html :: footer}">
+
+    </div>
+    <script src='/js/product/product.js'></script>
+</body>
+
+</html>

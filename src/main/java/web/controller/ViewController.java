@@ -71,5 +71,14 @@ public class ViewController {
         return "/api/datago.html";
     }
 
+    @GetMapping("/product/register")
+    public String pRegister(){
+        return "/product/regist.html";
+    }
+
+    @GetMapping("/product")
+    public String product(){
+        return "/product/product.html";
+    }
 
 }
